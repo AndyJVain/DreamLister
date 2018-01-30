@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10179552008654500FA1220 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10179542008654500FA1220 /* ItemCell.swift */; };
 		A14D1C602006A446005014EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C5F2006A446005014EB /* AppDelegate.swift */; };
-		A14D1C622006A446005014EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C612006A446005014EB /* ViewController.swift */; };
+		A14D1C622006A446005014EB /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C612006A446005014EB /* MainVC.swift */; };
 		A14D1C652006A446005014EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14D1C632006A446005014EB /* Main.storyboard */; };
 		A14D1C682006A446005014EB /* DreamLister.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C662006A446005014EB /* DreamLister.xcdatamodeld */; };
 		A14D1C6A2006A446005014EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A14D1C692006A446005014EB /* Assets.xcassets */; };
 		A14D1C6D2006A446005014EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14D1C6B2006A446005014EB /* LaunchScreen.storyboard */; };
+		A14D1C762006B6B0005014EB /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C742006B6B0005014EB /* Item+CoreDataClass.swift */; };
+		A14D1C772006B6B0005014EB /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D1C752006B6B0005014EB /* Item+CoreDataProperties.swift */; };
+		A15DF1062007DDEE00E55D47 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DF1052007DDEE00E55D47 /* MaterialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10179542008654500FA1220 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		A14D1C5C2006A446005014EB /* DreamLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14D1C5F2006A446005014EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A14D1C612006A446005014EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A14D1C612006A446005014EB /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A14D1C642006A446005014EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A14D1C672006A446005014EB /* DreamLister.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DreamLister.xcdatamodel; sourceTree = "<group>"; };
 		A14D1C692006A446005014EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A14D1C6C2006A446005014EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A14D1C6E2006A446005014EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A14D1C742006B6B0005014EB /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A14D1C752006B6B0005014EB /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A15DF1052007DDEE00E55D47 /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A14BEBAA2007DB16003F9F43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A15DF1052007DDEE00E55D47 /* MaterialView.swift */,
+				A10179542008654500FA1220 /* ItemCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A14D1C532006A446005014EB = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +73,11 @@
 		A14D1C5E2006A446005014EB /* DreamLister */ = {
 			isa = PBXGroup;
 			children = (
+				A14D1C782006B6C0005014EB /* Model */,
+				A14BEBAA2007DB16003F9F43 /* View */,
+				A1C30B59201FE3E600CE0F64 /* Controller */,
+				A14D1C792006B6D1005014EB /* Generated */,
 				A14D1C5F2006A446005014EB /* AppDelegate.swift */,
-				A14D1C612006A446005014EB /* ViewController.swift */,
 				A14D1C632006A446005014EB /* Main.storyboard */,
 				A14D1C692006A446005014EB /* Assets.xcassets */,
 				A14D1C6B2006A446005014EB /* LaunchScreen.storyboard */,
@@ -65,6 +85,30 @@
 				A14D1C662006A446005014EB /* DreamLister.xcdatamodeld */,
 			);
 			path = DreamLister;
+			sourceTree = "<group>";
+		};
+		A14D1C782006B6C0005014EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A14D1C742006B6B0005014EB /* Item+CoreDataClass.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A14D1C792006B6D1005014EB /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				A14D1C752006B6B0005014EB /* Item+CoreDataProperties.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		A1C30B59201FE3E600CE0F64 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A14D1C612006A446005014EB /* MainVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +183,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A14D1C622006A446005014EB /* ViewController.swift in Sources */,
+				A14D1C622006A446005014EB /* MainVC.swift in Sources */,
 				A14D1C602006A446005014EB /* AppDelegate.swift in Sources */,
+				A14D1C762006B6B0005014EB /* Item+CoreDataClass.swift in Sources */,
+				A15DF1062007DDEE00E55D47 /* MaterialView.swift in Sources */,
+				A10179552008654500FA1220 /* ItemCell.swift in Sources */,
 				A14D1C682006A446005014EB /* DreamLister.xcdatamodeld in Sources */,
+				A14D1C772006B6B0005014EB /* Item+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
