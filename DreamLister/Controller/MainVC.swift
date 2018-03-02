@@ -24,18 +24,22 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        generateTestData()
+        attemptFetch()
+        
     }
     
     // Sets up the cells and dequeues when necessary
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         
-        configureCell(cell: cell, indexPath: indexPath)
+        configureCell(cell: cell, indexPath: (indexPath as NSIndexPath))
         return cell
     }
     
     func configureCell(cell: ItemCell, indexPath: NSIndexPath) {
-        let item = controller.object(at: indexPath)
+        let item = controller.object(at: indexPath as IndexPath)
         cell.configureCell(item: item)
     }
     
@@ -61,16 +65,48 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         return 150
     }
     
+    // When the user selects the TableView cell, the object with its data is sent in the segue
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objects = controller.fetchedObjects, objects.count > 0 {
+            let item = objects[indexPath.row]
+            performSegue(withIdentifier: "ItemDetailsVC", sender: item)
+        }
+    }
+    
+    // Get ready to pass information from first view to edit view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ItemDetailsVC" {
+            if let destination = segue.destination as? ItemDetailsVC {
+                if let item = sender as? Item {
+                    destination.itemToEdit = item
+                }
+            }
+        }
+    }
+    
     func attemptFetch() {
         // What kind of items we are fetching (items)
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         
         // How to sort the data that is being fetched (by date)
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
-        fetchRequest.sortDescriptors = [dateSort]
+        let priceSort = NSSortDescriptor(key: "price", ascending: true)
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        
+        // Change the sort mode based on the segment index
+        if segment.selectedSegmentIndex == 0 {
+            fetchRequest.sortDescriptors = [dateSort]
+        } else if segment.selectedSegmentIndex == 1 {
+            fetchRequest.sortDescriptors = [priceSort]
+        } else  if segment.selectedSegmentIndex == 2 {
+            fetchRequest.sortDescriptors = [titleSort]
+        }
         
         // The controller with the type we are fetching and the way of sorting the types (items) as parameters
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        controller.delegate = self
+        self.controller = controller
         
         // Perform the fetch
         do {
@@ -79,6 +115,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             let error = error as NSError
             print("\(error)")
         }
+    }
+    
+    // Reloads the TableView when the segment is changed
+    @IBAction func segmentChange(_ sender: Any) {
+        attemptFetch()
+        tableView.reloadData()
     }
     
     // Whenever the tableview is about to update, this will start to listen to changes and will handle them.
@@ -110,7 +152,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         case.update:
             if let indexPath = indexPath {
                 let cell = tableView.cellForRow(at: indexPath) as! ItemCell
-                configureCell(cell: cell, indexPath: indexPath)
+                configureCell(cell: cell, indexPath: (indexPath as NSIndexPath))
             }
             break
         case.move:
@@ -122,6 +164,25 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             }
             break
         }
+    }
+    
+    func generateTestData() {
+        let item = Item(context: context)
+        item.title = "MacBook Pro"
+        item.price = 1800
+        item.details = "I can't wait until the September event, I hope they release new MBPs."
+        
+        let item2 = Item(context: context)
+        item2.title = "Tesla Model X"
+        item2.price = 110000
+        item2.details = "The obvious choice."
+        
+        let item3 = Item(context: context)
+        item3.title = "Bose Headphones"
+        item3.price = 300
+        item3.details = "Noise-cancelling is the best!"
+        
+        ad.saveContext()
     }
     
 }
